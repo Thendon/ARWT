@@ -17,9 +17,6 @@ namespace ARWT.Core{
         static string markersPath = "data/markers";
         static string markersImagesPath = "data/markersImages";
         static string index = "index.html";
-        static string appJS = "js/app.js";
-
-        
 
         [PostProcessBuild]
         public static void OnPostProcessBuild(BuildTarget target, string targetPath){
@@ -33,6 +30,7 @@ namespace ARWT.Core{
                 path = Path.Combine(targetPath, "Build/" + getName(targetPath) + ".json");
                 replaceInFile(path, "backgroundColor", "");
 
+
                 generateHTML(targetPath);
                 copyImages(targetPath);
 
@@ -40,6 +38,16 @@ namespace ARWT.Core{
                 replaceInFile(Path.Combine(targetPath, appJS), buildPlaceholder, unityDeclaration);
             }
         }
+
+        //[PostProcessBuild]
+        //public static void OnPostProcessBuild(BuildTarget target, string targetPath){
+		//    var path = Path.Combine(targetPath, "Build/" + getName(targetPath) + ".loader.js");
+        //    var text = File.ReadAllText(path);
+        //    text = text.Replace("UnityLoader.SystemInfo.mobile", "false");
+        //    File.WriteAllText(path, text);
+        //    generateHTML(targetPath);
+        //    copyImages(targetPath);
+        //}
 
         static string getName(string p){
             string[] pieces = new string[1];
